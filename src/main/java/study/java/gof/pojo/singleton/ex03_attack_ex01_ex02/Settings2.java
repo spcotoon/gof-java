@@ -1,6 +1,8 @@
 package study.java.gof.pojo.singleton.ex03_attack_ex01_ex02;
 
-public class Settings2 {
+import java.io.Serializable;
+
+public class Settings2 implements Serializable {
 
     private Settings2() {
 
@@ -18,4 +20,16 @@ public class Settings2 {
     public static Settings2 getInstance() {
         return Settings2Holder.INSTANCE;
     }
+
+    /**
+     * 역직렬화 대응 방안
+     * protected Object readResolve() 키워드 사용.
+     * 원랜 이 키워드 안에서 new 하는데, getInstance 반환 해버리면 싱글톤 유지 가능.
+     */
+
+    /*
+    protected Object readResolve() {
+        return getInstance();
+    }
+     */
 }
